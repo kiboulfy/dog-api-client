@@ -1,5 +1,5 @@
 from httpx import Client
-from models import BreedModelList
+from models import BreedModel, BreedModelList
 
 
 class DogApiClient:
@@ -11,6 +11,11 @@ class DogApiClient:
         response = self.client.get(f"{self.base_url}/breeds")
         return BreedModelList.model_validate(response.json())
 
+    def get_breed(self, id) -> BreedModel:
+        self.id = id
+        response = self.client.get(f"{self.base_url}/breeds/{self.id}")
+        return repr(BreedModel.model_validate(response.json()))
+
 
 client = DogApiClient()
-print(client.get_breeds())
+print(client.get_breed("8355b9c9-3724-477d-858a-c1c1c0f1743f"))
