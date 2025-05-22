@@ -1,4 +1,4 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, UUID4
 
 
 class Weight(BaseModel):
@@ -21,7 +21,7 @@ class Attributes(BaseModel):
 
 
 class Data(BaseModel):
-    id: str
+    id: UUID4
     type: str
     attributes: Attributes
 
@@ -55,7 +55,7 @@ class BreedModelList(BaseModel):
 
 
 class RelationshipsInfo(BaseModel):
-    id: str
+    id: UUID4
     type: str
 
 
@@ -68,7 +68,7 @@ class Relationships(BaseModel):
 
 
 class DataGroupOrFacts(BaseModel):
-    id: str
+    id: UUID4
     type: str
     attributes: dict[str, str]
     relationships: Relationships | None = None

@@ -1,5 +1,6 @@
 from httpx import Client
 from models import BreedModel, BreedModelList, Facts, Group, Groups
+from pydantic import UUID4
 
 
 class DogApiClient:
@@ -11,8 +12,8 @@ class DogApiClient:
         response = self.client.get(f"{self.base_url}/breeds")
         return BreedModelList.model_validate(response.json())
 
-    def get_breed(self, id: str) -> BreedModel:
-        self.id: str = id
+    def get_breed(self, id: UUID4) -> BreedModel:
+        self.id: UUID4 = id
         response = self.client.get(f"{self.base_url}/breeds/{self.id}")
         return repr(BreedModel.model_validate(response.json()))
 
@@ -27,8 +28,8 @@ class DogApiClient:
         response = self.client.get(f"{self.base_url}/groups")
         return Groups.model_validate(response.json())
 
-    def get_group(self, id: str) -> Group:
-        self.id: str = id
+    def get_group(self, id: UUID4) -> Group:
+        self.id: UUID4 = id
         response = self.client.get(f"{self.base_url}/groups/{self.id}")
         return Group.model_validate(response.json())
 
