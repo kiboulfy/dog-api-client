@@ -52,3 +52,37 @@ class BreedModelList(BaseModel):
     data: list[Data]
     meta: Meta | None = None
     links: Links
+
+
+class RelationshipsInfo(BaseModel):
+    id: str
+    type: str
+
+
+class DataForRelationships(BaseModel):
+    data: list[RelationshipsInfo]
+
+
+class Relationships(BaseModel):
+    breeds: DataForRelationships
+
+
+class DataGroupOrFacts(BaseModel):
+    id: str
+    type: str
+    attributes: dict[str, str]
+    relationships: Relationships | None = None
+
+
+class Facts(BaseModel):
+    data: list[DataGroupOrFacts]
+
+
+class Group(BaseModel):
+    data: DataGroupOrFacts
+    links: Links
+
+
+class Groups(BaseModel):
+    data: list[DataGroupOrFacts]
+    links: Links
