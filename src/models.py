@@ -1,4 +1,4 @@
-from pydantic import BaseModel, HttpUrl, UUID4
+from pydantic import UUID4, BaseModel, HttpUrl
 
 
 class Weight(BaseModel):
